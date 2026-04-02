@@ -9,21 +9,23 @@ const fields = [
 
 export default function BookingBar() {
   return (
-    <div className="rounded-[24px] bg-white p-4 shadow-xl ring-1 ring-black/5">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+    <div className="mx-auto w-full max-w-[1080px] rounded-[18px] bg-white p-3 shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr_88px]">
         {fields.map((field) => (
           <div
             key={field.label}
-            className="rounded-2xl border border-[var(--border)] px-4 py-3"
+            className="rounded-xl border border-[#f0e7de] px-5 py-4"
           >
-            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--primary)]">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
               {field.label}
             </p>
-            <p className="mt-1 text-sm text-gray-700">{field.value}</p>
+            <p className="mt-2 text-sm text-[var(--text-secondary)]">
+              {field.value}
+            </p>
           </div>
         ))}
 
-        <button className="flex items-center justify-center rounded-2xl bg-[var(--primary)] text-white transition hover:bg-[var(--primary-dark)]">
+        <button className="flex min-h-[64px] items-center justify-center rounded-xl bg-[var(--primary)] text-white transition hover:bg-[var(--primary-dark)]">
           <Search size={20} />
         </button>
       </div>

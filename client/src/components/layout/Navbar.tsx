@@ -1,36 +1,83 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 const navLinks = [
-  "Home",
-  "About Us",
-  "Tour Packages",
-  "Our Services",
-  "Gallery",
-  "Contact",
+  "HOME",
+  "ABOUT US",
+  "TOUR PACKAGES",
+  "OUR SERVICES",
+  "GALLERY",
+  "CONTACT",
 ];
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 24);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/95 backdrop-blur">
-      <div className="container-custom flex h-20 items-center justify-between">
-        <a href="#" className="text-xl font-extrabold tracking-wide">
-          <span className="text-[var(--primary)]">Travel</span>Go
-        </a>
+    <>
+      <div
+        className={`transition-all duration-300 ${
+          isScrolled ? "h-[72px]" : "h-[96px]"
+        }`}
+      />
 
-        <nav className="hidden items-center gap-8 text-sm font-medium lg:flex">
-          {navLinks.map((link) => (
+      <header className="fixed left-0 top-0 z-50 w-full bg-white transition-all duration-300">
+        <div className="container-custom">
+          <div
+            className={`flex items-center justify-between transition-all duration-300 ${
+              isScrolled ? "h-[72px]" : "h-[96px]"
+            }`}
+          >
             <a
-              key={link}
               href="#"
-              className="transition hover:text-[var(--primary)]"
+              className={`flex items-center gap-1 font-extrabold leading-none transition-all duration-300 ${
+                isScrolled ? "text-base" : "text-lg"
+              }`}
             >
-              {link}
+              <span className="text-[var(--primary)]">TRAVEL</span>
+              <span className="text-[var(--text-primary)]">GO</span>
             </a>
-          ))}
-        </nav>
 
-        <div className="hidden text-sm font-semibold text-[var(--primary)] md:block">
-          +111 - 0258211
+            <nav
+              className={`hidden items-center transition-all duration-300 lg:flex ${
+                isScrolled ? "gap-6" : "gap-8"
+              }`}
+            >
+              {navLinks.map((link, index) => (
+                <a
+                  key={link}
+                  href="#"
+                  className={`font-medium tracking-wide transition-all duration-300 hover:text-[var(--primary)] ${
+                    index === 0
+                      ? "text-[var(--primary)]"
+                      : "text-[var(--text-primary)]"
+                  } ${isScrolled ? "text-[12px]" : "text-[13px]"}`}
+                >
+                  {link}
+                </a>
+              ))}
+            </nav>
+
+            <div
+              className={`hidden font-semibold text-[var(--primary)] transition-all duration-300 md:block ${
+                isScrolled ? "text-[13px]" : "text-sm"
+              }`}
+            >
+              +111 - 0258211
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 }
