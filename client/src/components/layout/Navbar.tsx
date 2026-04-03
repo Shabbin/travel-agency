@@ -32,9 +32,9 @@ export default function Navbar() {
       />
 
       <header className="fixed left-0 top-0 z-50 w-full bg-white transition-all duration-300">
-        <div className="container-custom">
+        <div className="w-full">
           <div
-            className={`flex items-center justify-between transition-all duration-300 ${
+            className={`mx-auto flex w-full max-w-[980px] items-center justify-between px-4 transition-all duration-300 ${
               isScrolled ? "h-[72px]" : "h-[96px]"
             }`}
           >
